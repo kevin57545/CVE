@@ -56,13 +56,11 @@ $this->db->where('VDate BETWEEN "'.$dtpFromDate.'" and "'.$dtpToDate.'"');
 1. Install Multi-Store Inventory Management System v1.0 on a local
    XAMPP environment
 2. Log in with an **admin** account
-3. Navigate to: **Accounts → Account Reports → General Ledger** 
-<img width="248" height="610" alt="image" src="https://github.com/user-attachments/assets/8e77e9ec-cd7a-4879-bc6b-33e791c16dff" />
+3. Navigate to: **Accounts → Account Reports → General Ledger**  <img width="248" height="610" alt="image" src="https://github.com/user-attachments/assets/8e77e9ec-cd7a-4879-bc6b-33e791c16dff" />
 4. In the report form, select any **GL Head** from the dropdown (the selected GL code value will be submitted as `cmbGLCode`)
 5. Leave **Transaction Head** blank
 6. Set **From Date** to `2020-01-01`
-7. Set **To Date** to the payload below 
-<img width="1848" height="803" alt="image" src="https://github.com/user-attachments/assets/94484786-0b0e-42a3-b527-54d570a3b012" />
+7. Set **To Date** to the payload below  <img width="1848" height="803" alt="image" src="https://github.com/user-attachments/assets/94484786-0b0e-42a3-b527-54d570a3b012" />
 8. Click **Search**
 
 ---
