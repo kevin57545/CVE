@@ -7,7 +7,7 @@
 | **Product** | Multi-Store Inventory Management System    |
 | **Vendor**  | Bdtask                                     |
 | **Version** | 1.0                                        |
-| **Type**    | Remote Code Execution (CWE-98)             |
+| **Type**    | Remote Code Execution (CWE-94)             |
 | **Author**  | Kevin Chiang                               |
 | **Date**    | 2026-05-05                                 |
 | **CVSS**    | 8.5 (AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H)  |
@@ -215,5 +215,5 @@ An authenticated admin attacker can:
 ## References
 
 - Vendor homepage: https://www.bdtask.com/
-- Related CWE: CWE-98 (Improper Control of Filename for Include/Require)
+- Related CWE: CWE-94 (Improper Control of Generation of Code / Code Injection)
 - Related CWE: CWE-434 (Unrestricted Upload of File with Dangerous Type)
