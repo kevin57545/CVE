@@ -118,13 +118,6 @@ POST /dashboard/module/upload HTTP/1.1
 Host: localhost:8080
 Content-Type: multipart/form-data; boundary=----boundary
 Cookie: ci_session=[your-session-id]
-
-------boundary
-Content-Disposition: form-data; name="module"; filename="test_module.zip"
-Content-Type: application/zip
-
-[binary ZIP content]
-------boundary--
 ```
 
 ### Trigger Step
